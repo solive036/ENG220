@@ -22,13 +22,13 @@ try:
         water_columns = data.columns[1:5]
 
         # Plotting
-        st.write("### Line Plot of Water Data Against Row Number")
+        st.write("### Water Level Over Time")
         fig, ax = plt.subplots(figsize=(12, 6))
         row_numbers = range(1, len(data) + 1)  # Generate row indices
         for column in water_columns:
             ax.plot(row_numbers, data[column], label=column)
         ax.set_xlabel("Row Number")
-        ax.set_ylabel("Water Data Values")
+        ax.set_ylabel("Water Level in Feet ")
         ax.legend(title="Water Data Columns")
         ax.grid(True)
         st.pyplot(fig)
