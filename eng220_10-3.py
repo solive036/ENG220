@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Title of the app
 st.title("Water Data Viewer for New Mexico")
@@ -21,7 +22,7 @@ try:
         # Automatically use columns 2 through 5 as water data
         water_columns = data.columns[1:5]
 
-        # Plotting
+        # Plotting water level over time
         st.write("### Water Level Over Time")
         fig, ax = plt.subplots(figsize=(12, 6))
         row_numbers = range(1, len(data) + 1)  # Generate row indices
@@ -31,6 +32,14 @@ try:
         ax.set_ylabel("Water Level in Feet ")
         ax.legend(title="Water Data Columns")
         ax.grid(True)
+        st.pyplot(fig)
+
+        # Generate correlation heat map
+        st.write("### Correlation Heat Map")
+        correlation_matrix = data[water_columns].corr()  # Calculate correlation matrix for selected columns
+        fig, ax = plt.subplots(figsize=(10, 8))
+        sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", fmt=".2f", ax=ax)
+        ax.set_title("Correlation Between Water Data Columns")
         st.pyplot(fig)
 
 except FileNotFoundError:
