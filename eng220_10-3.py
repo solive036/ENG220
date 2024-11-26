@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Title of the app
-st.title("Water Data Viewer for New Mexico")
+st.title("Water Levels in New Mexico")
 
 # Load the dataset directly (assuming it is in the same directory)
 file_name = "NewMexico_Data.xlsx"
